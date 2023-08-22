@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container1">
+        <h1>Login</h1>
+        <form action="index.html" method="POST">
+            <label for="username">User_name</label>
+            <input type="text" id="username" name="user_name" placeholder="Enter your username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <div class='forgetpass'><a href="" class="link">Forget Password</a></div>
+            <button type="submit">Log In</button>
+            <div class='Signup'>New Member ?     <a href="signup.php" class="link"> SignUp Here </a></div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            justify-content: center;
+            margin: 10px;
+            display: inline-flexbox;
+            background-image: url("https://png.pngtree.com/background/20230429/original/pngtree-cyber-security-concept-data-protection-and-secured-internet-access-generative-ai-picture-image_2499680.jpg");
+            
+            
+        }
+        .container1 {
+        width: 300px;
+        margin: 50px auto;
+        margin-left: 500px;
+        margin-top: 100px;
+
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: black;
+        }
+        label {
+            color: rgb(217, 207, 12); /* Replace with your desired color */
+        }
+        form {
+            margin-top: 20px;
+            max-width: 1000px;
+            margin: 35;
+            display: inline-flex;
+            flex-direction: column;
+
+        }
+        input, textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #f6f2f2cf;
+            font-size: 1.2em;
+        }
+
+        textarea {
+            height: 150px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+
+<?php
+session_start();
+
+// Check if the user is already logged in, redirect to welcome.php if true
+if (isset($_SESSION['user'])) {
+    header("Location: welcom.php");
+    exit();
+}
+
+// Check if the form is submitted
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Replace 'your_username' and 'your_password' with the actual username and password you want to use for login.
+    // You can also use a database to store and validate credentials.
+    if ($username === 'your_username' && $password === 'your_password') {
+        // Set the session variable to mark the user as logged in
+        $_SESSION['user'] = $username;
+        header("Location: welcom.php");
+        exit();
+    } else {
+        $error = "Invalid username or password";
+    }
+}
+?>
